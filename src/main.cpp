@@ -114,6 +114,7 @@ int main(int argc, char*argv[]) {
             fprintf(stderr, __FILE__": pa_simple_read() failed: %s\n", pa_strerror(error));
             goto finish;
         }
+
         double max[BARS];
         double multiplier;
         int winndow_size = 2;
@@ -136,7 +137,6 @@ int main(int argc, char*argv[]) {
             freq_bin[i]=i*(SAMPLE_RATE/NSAMPLES)+i;
             //printf("%d:%lf\t",i,freq_bin[i]);
         }
-        //printf("\n");
         freq_bin[BARS]=SAMPLE_RATE/2;
 
         for(int i=0;i<NSAMPLES;i++)
@@ -180,12 +180,15 @@ int main(int argc, char*argv[]) {
             if(max[i]>2.0)
                 max[i]=log(max[i]);
 
-            for(int j=0;j<THICKNESS;j++)
+            for(int j=0;j<THICKNESS;j++) {
                 SDL_RenderDrawLine(renderer,
                                     startx+(i*DISTANCE+j),
                                     starty,
                                     startx+(i*DISTANCE+j),
                                     starty-(FIT_FACTOR*max[i]));
+            }
+        startx+=50;
+        printf("%i\n",i);
         }
         SDL_RenderPresent(renderer);
     }
