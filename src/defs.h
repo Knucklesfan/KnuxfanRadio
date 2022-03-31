@@ -1,12 +1,11 @@
-#include <SDL/SDL.h>
-#include <SDL/SDL_audio.h>
-#include <SDL/SDL_mixer.h>
+#include <SDL2/SDL.h>
 
-#define WIDTH 800
-#define HEIGHT 600
-#define SAMPLE_RATE 44100
-#define BARS 60
-#define THICKNESS 15
-#define DISTANCE 16
-#define FIT_FACTOR 30
-
+class graphics {
+    public:
+        static SDL_Renderer* render;
+        static SDL_Window* window;
+        static int sign(int);
+        static double deltaTime;
+        static void drawTexture(SDL_Texture* texture, int x, int y, double angle, double scale, bool center);
+    //uhhh put other static stuff here.
+};
